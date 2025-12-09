@@ -24,7 +24,7 @@ const invalid5 = [5, 3, 8, 2, 0, 1, 9, 7, 7, 2, 8, 8, 3, 8, 5, 4];
 const validateCreditCard = (cardNumbers) => {
 	
 	let cardSum = 0;
-	for (let i=cardNumbers.length- 1; i >= 0; i--) {
+	for (let i=cardNumbers.length - 1; i >= 0; i--) {
 		// we want to do something different to every other number in the array
 		let bothEvenOrBothOdd = doArrayLengthAndIterationMatch(cardNumbers.length - 1, i);
 
