@@ -42,6 +42,7 @@ const validateCreditCard = (cardNumbers) => {
 	return isValidCardNumber;
 }
 
+// helper function
 const doArrayLengthAndIterationMatch = (arrayLength, index) => {
 	let isEven;
 	let isOdd;
@@ -68,6 +69,7 @@ const doArrayLengthAndIterationMatch = (arrayLength, index) => {
 	}
 }
 
+// helper function
 const prepareNumber = (cardNumber) => {
 	cardNumber *= 2;
 	
