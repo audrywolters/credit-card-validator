@@ -1,7 +1,4 @@
-var button = document.getElementById("test");
-button.addEventListener("click", function() {
-	validateCreditCard(valid1)
-});
+
 
 
 
@@ -24,49 +21,24 @@ const invalid5 = [5, 3, 8, 2, 0, 1, 9, 7, 7, 2, 8, 8, 3, 8, 5, 4];
 const validateCreditCard = (cardNumbers) => {
 	
 	let cardSum = 0;
-	for (let i=cardNumbers.length - 1; i >= 0; i--) {
-		// we want to do something different to every other number in the array
-		let bothEvenOrBothOdd = doArrayLengthAndIterationMatch(cardNumbers.length - 1, i);
 
-		if (bothEvenOrBothOdd) {
+	for (let i=cardNumbers.length - 1; i >= 0; i--) {
+		
+		// we want to do something different to every other number in the array	
+		if (((cardNumbers.length - 1) % 2) === (i % 2)) {
+			// we are at the end or 3rd from the end or 5th from the end etc
 			// just add the number to the sum
 			cardSum += cardNumbers[i];
 		} else {
+			// we are at the 2nd from the end or 4th from the end etc
 			// do work to the number
 			cardSum += prepareNumber(cardNumbers[i]);
 		}
 	}
 
-	// if the work done on the numbers is divisible by 10, we have a vlid credit card number
-	let isValidCardNumber = cardSum % 10 === 0 ? true : false;
+	// if the work done on the numbers is divisible by 10, we have a valid credit card number
+	let isValidCardNumber = cardSum % 10 === 0;
 	return isValidCardNumber;
-}
-
-// helper function
-const doArrayLengthAndIterationMatch = (arrayLength, index) => {
-	let isEven;
-	let isOdd;
-
-	// check if we are at the end or third to end or fifth to end etc of the array
-	if (arrayLength % 2 === 0 && index % 2 === 0) {
-		isEven = true;
-	} else {
-		isEven = false;
-	}
-	// check if we are at the end or third to end or fifth to end etc of the array
-	if (arrayLength % 2 !== 0 && index % 2 !== 0) {
-		isOdd = true;
-	} else {
-		isOdd = false;
-	}
-
-	if (isEven || isOdd) {
-		// we are at the end or third to end or fifth to end etc of the array
-		return true;
-	} else {
-		// we are at the second to end or fourth to end or sixth to end etc of the array
-		return false;
-	}
 }
 
 // helper function
