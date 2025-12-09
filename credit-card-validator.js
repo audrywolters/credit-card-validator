@@ -71,8 +71,8 @@ const findInvalidCards = (batch) => {
 	let invalidCards = [];
 
 	batch.forEach(cardNumbers => {
-		const result = validateCreditCard(cardNumbers);
-		if (!result) {
+		const isValid = validateCreditCard(cardNumbers);
+		if (!isValid) {
 			invalidCards.push(cardNumbers);
 		}
 	})
