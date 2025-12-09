@@ -1,1 +1,1 @@
-Code that checks if a credit card number is valid or not
+Javascript that checks if a credit card number is valid or not
