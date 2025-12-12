@@ -1,3 +1,4 @@
+// debug in browser
 var button = document.getElementById("test");
 button.addEventListener("click", function() {
 	idInvalidCardCompanies(invalidCardNumbers)
@@ -33,21 +34,23 @@ const invalidCardNumbers = [invalid1, invalid2, invalid3, invalid4, invalid5];
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5];
 
-
+// this is the method that determins if a single credit card number is valid or not
 const validateCreditCard = (cardNumbers) => {
 	
+	// we will be adding and doing other work to each number and we want to know the total
 	let cardSum = 0;
 
+	// let's start at the end of the credit card number and work backwards
 	for (let i=cardNumbers.length - 1; i >= 0; i--) {
 		
 		// we want to do something different to every other number in the array	
 		if (((cardNumbers.length - 1) % 2) === (i % 2)) {
 			// we are at the end or 3rd from the end or 5th from the end etc
-			// just add the number to the sum
+			// just add the plain number to the sum
 			cardSum += cardNumbers[i];
 		} else {
 			// we are at the 2nd from the end or 4th from the end etc
-			// do work to the number
+			// do work to the number in the helper function
 			cardSum += prepareNumber(cardNumbers[i]);
 		}
 	}
@@ -57,7 +60,7 @@ const validateCreditCard = (cardNumbers) => {
 	return isValidCardNumber;
 }
 
-// helper function
+// helper function for every other credit card number
 const prepareNumber = (cardNumber) => {
 	cardNumber *= 2;
 	
@@ -70,7 +73,7 @@ const prepareNumber = (cardNumber) => {
 
 
 
-// find invalid cards in the array of all card numbers
+// collect invalid cards in the array of all card numbers
 const findInvalidCards = (batch) => {
 let invalidCards = [];
 
@@ -84,10 +87,13 @@ let invalidCards = [];
 	return invalidCards;
 }
 
+// this function will determine the credit card company 
+// and collect all companies that have issued invalid cards
 const idInvalidCardCompanies = (invalidCardNumbers) => {
 	let companies = [];
 
 	invalidCardNumbers.forEach(invalidCardNumbers => {
+		// check the first digit to determine the company
 		let firstDigit = invalidCardNumbers[0];
 		
 		switch (firstDigit) {
@@ -116,5 +122,6 @@ const idInvalidCardCompanies = (invalidCardNumbers) => {
 		}
 	});
 
+	// return an array of companies that have issued invalid cards
 	return companies;
 }
